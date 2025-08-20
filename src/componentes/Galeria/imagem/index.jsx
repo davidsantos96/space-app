@@ -65,9 +65,9 @@ const IconImg = styled.img`
 `;
 
 
-const Imagem = ({ foto, $expandida = false }) => {
+const Imagem = ({ foto,expandida = false, aoZoomSolicitado }) => {
   return (
-    <Figure $expandida={$expandida}>
+    <Figure expandida={expandida}>
       <img
         src={`./imagens/galeria/${foto.path.replace("/imagens/galeria/", "")}`}
         alt={foto.titulo}
@@ -80,9 +80,9 @@ const Imagem = ({ foto, $expandida = false }) => {
             <IconButton title="Favorito">
               <IconImg src="./icones/favorito-ativo.png" alt="Favorito" />
             </IconButton>
-            <IconButton title="Expandir">
-              <IconImg src="./icones/expandir.png" alt="Expandir" />
-            </IconButton>
+            {!expandida && <IconButton aria-hidden={expandida} onClick={() => aoZoomSolicitado(foto)}>
+              <img src="./icones/expandir.png" alt="Expandir" />
+            </IconButton>}
           </Icones>
         </Footer>
       </figcaption>

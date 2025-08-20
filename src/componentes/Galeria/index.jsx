@@ -12,28 +12,27 @@ const GaleriaContainer = styled.div`
 const SecaoFluida = styled.section`
     flex-grow: 1;
 `
+const ImagensContainer = styled.section`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px;
+`
 
-const Galeria = ({ fotos = [] }) => {
+const Galeria = ({ fotos = [], aoFotoSelecionada }) => {
     return (
         <>
         <Tags />
         <GaleriaContainer>
             <SecaoFluida>
                 <Titulo>Navegue pela galeria</Titulo>
-                                <ul style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                                    gap: '24px',
-                                    listStyle: 'none',
-                                    padding: 0,
-                                    margin: 0
-                                }}>
-                                    {fotos.map(foto => (
-                                        <li key={foto.id}>
-                                            <Imagem foto={foto} />
-                                        </li>
-                                    ))}
-                                </ul>
+                <ImagensContainer>
+                    {fotos.map(foto => <Imagem
+                        key={foto.id}
+                        foto={foto}
+                        aoZoomSolicitado={aoFotoSelecionada}
+                    />)}
+                </ImagensContainer>
             </SecaoFluida>
             <Populares />
 
